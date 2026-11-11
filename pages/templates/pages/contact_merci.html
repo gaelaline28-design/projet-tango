@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Merci ! — Tango argentin{% endblock %}
+
+{% block content %}
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1>Merci !</h1>
+    </div>
+  </section>
+
+  <section class="section-merci">
+    <div class="section-inner">
+      <div class="bloc-merci">
+
+        <p class="merci-texte">Votre message a bien été envoyé.</p>
+
+        <!-- request.GET.lieu = paramètre ?lieu=... dans l'URL -->
+        {% if request.GET.lieu %}
+          <p class="merci-lieu">Lieu choisi : <strong>{{ request.GET.lieu }}</strong></p>
+        {% endif %}
+
+        <a href="/" class="btn">Retour à l'accueil</a>
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

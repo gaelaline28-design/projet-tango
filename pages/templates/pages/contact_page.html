@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Contact et inscription — Tango argentin{% endblock %}
+
+{% block content %}
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1>Contact et inscription</h1>
+    </div>
+  </section>
+
+  <section class="section-contact">
+    <div class="section-inner section-contact-inner">
+
+      <!-- Colonne gauche : coordonnées -->
+      <div class="contact-coordonnees">
+        <h2>Nous contacter</h2>
+        <p class="contact-ligne">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 4.2 2 2 0 0 1 5.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L9 9.9a16 16 0 0 0 6.1 6.1l1.5-1.3a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7A2 2 0 0 1 22 16.9z"/></svg>
+          <a href="tel:0000000000">00 00 00 00 00</a>
+        </p>
+        <p class="contact-ligne">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          <a href="mailto:contact@exemple.fr">contact@exemple.fr</a>
+        </p>
+      </div>
+
+      <!-- Colonne droite : formulaire -->
+      <div class="contact-formulaire">
+
+        <!-- Message d'erreur (affiché si erreur=1 dans l'URL) -->
+        {% if request.GET.erreur %}
+          <div class="form-erreurs" role="alert">
+            <p class="form-erreur-msg">Veuillez corriger les champs en rouge.</p>
+          </div>
+        {% endif %}
+
+        <!-- action="/contact/envoyer/" = envoie les données vers notre vue views.py -->
+        <!-- method="post" = les données sont envoyées de façon sécurisée -->
+        <form id="form-contact" method="post" action="/contact/envoyer/" novalidate>
+
+          <!-- {% csrf_token %} = protection de sécurité obligatoire pour tous les formulaires Django -->
+          {% csrf_token %}
+
+          <!-- Choix du motif -->
+          <fieldset class="form-groupe form-choix">
+            <legend class="form-label">Je souhaite</legend>
+            <div class="choix-radios">
+              <label class="radio-label">
+                <input type="radio" name="motif" value="inscription" checked> M'inscrire
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="motif" value="question"> Poser une question
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="form-grille">
+            <div class="form-groupe">
+              <label for="nom" class="form-label">Nom <span class="requis">*</span></label>
+              <input type="text" id="nom" name="nom" class="form-input" required autocomplete="family-name">
+              <span class="form-aide">Champ obligatoire</span>
+            </div>
+            <div class="form-groupe">
+              <label for="prenom" class="form-label">Prénom</label>
+              <input type="text" id="prenom" name="prenom" class="form-input" autocomplete="given-name">
+            </div>
+            <div class="form-groupe">
+              <label for="telephone" class="form-label">Téléphone</label>
+              <input type="tel" id="telephone" name="telephone" class="form-input" autocomplete="tel">
+            </div>
+            <div class="form-groupe">
+              <label for="email" class="form-label">E-mail <span class="requis">*</span></label>
+              <input type="email" id="email" name="email" class="form-input" required autocomplete="email">
+              <span class="form-aide">E-mail invalide</span>
+            </div>
+          </div>
+
+          <!-- Menu déroulant avec les lieux de cours (vient du contexte Wagtail) -->
+          <div class="form-groupe">
+            <label for="lieu" class="form-label">Lieu / cours</label>
+            <select id="lieu" name="lieu" class="form-input form-select">
+              <option value="">Choisissez un lieu</option>
+              {% for c in cours %}
+                <option value="{{ c.ville }}">{{ c.ville }} — {{ c.jour_horaire }}</option>
+              {% empty %}
+                <option value="eysines">Eysines</option>
+                <option value="pompignac">Pompignac</option>
+                <option value="bordeaux">Bordeaux</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-groupe">
+            <label for="message" class="form-label">Message</label>
+            <textarea id="message" name="message" class="form-input form-textarea" rows="4"></textarea>
+          </div>
+
+          <div class="form-groupe form-rgpd">
+            <label class="checkbox-label">
+              <input type="checkbox" name="rgpd" id="rgpd" required>
+              <span>J'accepte que mes données soient utilisées pour traiter ma demande (RGPD)</span>
+            </label>
+            <span class="form-aide">Veuillez accepter pour continuer</span>
+          </div>
+
+          <button type="submit" class="btn btn-envoyer">Envoyer</button>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Validation JavaScript côté navigateur (en plus de la validation Python)
+  const form = document.getElementById('form-contact');
+
+  form.addEventListener('submit', function (e) {
+    let valide = true;
+
+    // Réinitialise les erreurs précédentes
+    form.querySelectorAll('.invalide').forEach(el => el.classList.remove('invalide'));
+
+    // Vérifie le nom
+    const nom = form.querySelector('#nom');
+    if (!nom.value.trim()) {
+      nom.classList.add('invalide');
+      valide = false;
+    }
+
+    // Vérifie l'e-mail
+    const email = form.querySelector('#email');
+    if (!email.value.trim() || !email.value.includes('@')) {
+      email.classList.add('invalide');
+      valide = false;
+    }
+
+    // Vérifie la case RGPD
+    const rgpd = form.querySelector('#rgpd');
+    if (!rgpd.checked) {
+      rgpd.closest('.form-rgpd').classList.add('invalide');
+      valide = false;
+    }
+
+    // Si des erreurs : on bloque l'envoi
+    if (!valide) {
+      e.preventDefault();
+    }
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}Les professeurs — Tango argentin{% endblock %}
+
+{% block content %}
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1>Les professeurs</h1>
+    </div>
+  </section>
+
+  <section class="section-profs">
+    <div class="section-inner">
+      <div class="grille-profs">
+
+        <div class="carte-prof">
+          <div class="carte-prof-image">
+            {% if page.photo_julia %}
+              {% image page.photo_julia max-500 as img_julia %}
+              <img src="{{ img_julia.url }}" alt="{{ page.nom_julia }}" width="{{ img_julia.width }}" height="{{ img_julia.height }}">
+            {% else %}
+              <div class="prof-image-placeholder">Photo</div>
+            {% endif %}
+          </div>
+          <div class="carte-prof-corps">
+            <h2>{{ page.nom_julia }}</h2>
+            {% if page.bio_julia %}
+              <div class="texte-riche">{{ page.bio_julia|richtext }}</div>
+            {% else %}
+              <p>Biographie à compléter dans l'administration.</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="carte-prof">
+          <div class="carte-prof-image">
+            {% if page.photo_andres %}
+              {% image page.photo_andres max-500 as img_andres %}
+              <img src="{{ img_andres.url }}" alt="{{ page.nom_andres }}" width="{{ img_andres.width }}" height="{{ img_andres.height }}">
+            {% else %}
+              <div class="prof-image-placeholder">Photo</div>
+            {% endif %}
+          </div>
+          <div class="carte-prof-corps">
+            <h2>{{ page.nom_andres }}</h2>
+            {% if page.bio_andres %}
+              <div class="texte-riche">{{ page.bio_andres|richtext }}</div>
+            {% else %}
+              <p>Biographie à compléter dans l'administration.</p>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-asso">
+    <div class="section-inner">
+      <div class="bloc-asso">
+        <h2>L'association El Firulete</h2>
+        {% if page.texte_asso %}
+          <div class="texte-riche texte-asso">{{ page.texte_asso|richtext }}</div>
+        {% else %}
+          <p>Texte de présentation de l'association à compléter.</p>
+        {% endif %}
+        {% if page.photo_groupe %}
+          {% image page.photo_groupe max-900 as img_groupe %}
+          <img src="{{ img_groupe.url }}" alt="L'association El Firulete" width="{{ img_groupe.width }}" height="{{ img_groupe.height }}" class="photo-groupe">
+        {% else %}
+          <div class="photo-groupe-placeholder">Photo du groupe</div>
+        {% endif %}
+        <a href="/contact/" class="btn btn-asso">S'inscrire</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

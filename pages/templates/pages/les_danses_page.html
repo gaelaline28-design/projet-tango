@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}Les danses — Tango argentin{% endblock %}
+
+{% block content %}
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1>Les danses</h1>
+    </div>
+  </section>
+
+  <section class="section-liste-danses">
+    <div class="section-inner">
+
+      {% if danses %}
+        <ul class="grille-danses">
+          {% for danse in danses %}
+            <li class="carte-danse">
+              <div class="carte-danse-image">
+                {% if danse.image %}
+                  {% image danse.image max-600 as img_danse %}
+                  <img src="{{ img_danse.url }}" alt="{{ danse.title }}" width="{{ img_danse.width }}" height="{{ img_danse.height }}">
+                {% else %}
+                  <div class="carte-danse-placeholder">Image</div>
+                {% endif %}
+              </div>
+              <div class="carte-danse-corps">
+                <h2>{{ danse.title }}</h2>
+                <a href="{{ danse.url }}" class="btn">
+                  Voir
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="texte-vide">Aucune danse n'a encore été ajoutée.</p>
+      {% endif %}
+
+    </div>
+  </section>
+
+{% endblock %}

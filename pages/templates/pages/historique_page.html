@@ -5,32 +5,23 @@
 
 {% block content %}
 
-  <!-- ===================== EN-TÊTE DE PAGE ===================== -->
   <section class="page-hero">
     <div class="page-hero-inner">
       <h1>Histoire du tango et de la milonga</h1>
     </div>
   </section>
 
-  <!-- ===================== IMAGE / FRISE CHRONOLOGIQUE ===================== -->
   <section class="section-frise">
     <div class="section-inner">
       {% if page.image_frise %}
         {% image page.image_frise max-1100 as img_frise %}
-        <img
-          src="{{ img_frise.url }}"
-          alt="Frise chronologique du tango"
-          width="{{ img_frise.width }}"
-          height="{{ img_frise.height }}"
-          class="frise-img"
-        >
+        <img src="{{ img_frise.url }}" alt="Frise chronologique du tango" width="{{ img_frise.width }}" height="{{ img_frise.height }}" class="frise-img">
       {% else %}
         <div class="frise-placeholder">Image / frise chronologique</div>
       {% endif %}
     </div>
   </section>
 
-  <!-- ===================== HISTOIRE DU TANGO + LA MILONGA ===================== -->
   <section class="section-textes">
     <div class="section-inner section-textes-inner">
 
@@ -55,7 +46,6 @@
     </div>
   </section>
 
-  <!-- ===================== LES 3 DANSES D'UNE MILONGA ===================== -->
   <section class="section-3danses">
     <div class="section-inner">
       <div class="bloc-3danses">

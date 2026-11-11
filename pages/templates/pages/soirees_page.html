@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}Soirées et événements — Tango argentin{% endblock %}
+
+{% block content %}
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1>Soirées et événements</h1>
+    </div>
+  </section>
+
+  <section class="section-soirees-liste">
+    <div class="section-inner">
+
+      {% if soirees %}
+        <ul class="grille-soirees">
+          {% for soiree in soirees %}
+            <li class="fiche-soiree">
+              <div class="fiche-soiree-image">
+                {% if soiree.image %}
+                  {% image soiree.image fill-220x160 as img_s %}
+                  <img src="{{ img_s.url }}" alt="{{ soiree.titre }}" width="{{ img_s.width }}" height="{{ img_s.height }}">
+                {% else %}
+                  <div class="fiche-image-placeholder">Image</div>
+                {% endif %}
+              </div>
+              <div class="fiche-soiree-corps">
+                <p class="fiche-type">{{ soiree.get_type_label }}</p>
+                <h2 class="fiche-titre">{{ soiree.titre }}</h2>
+                <p class="fiche-meta">
+                  <span class="fiche-date">{{ soiree.date|date:"d/m/Y" }}</span>
+                  <!-- &middot; -->
+                  <span class="fiche-lieu">{{ soiree.lieu }}</span>
+                </p>
+                {% if soiree.description %}
+                  <div class="fiche-desc texte-riche">{{ soiree.description|richtext }}</div>
+                {% endif %}
+                <a href="/contact/" class="btn btn-contacter">Contacter</a>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="texte-vide">Aucune soirée prévue pour le moment. Revenez bientôt !</p>
+      {% endif %}
+
+    </div>
+  </section>
+
+{% endblock %}

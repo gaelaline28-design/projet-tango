@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{{ page.title }} — Tango argentin{% endblock %}
+
+{% block content %}
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1>{{ page.title }}</h1>
+    </div>
+  </section>
+
+  <section class="section-danse-detail">
+    <div class="section-inner section-danse-inner">
+
+      <div class="danse-image">
+        {% if page.image %}
+          {% image page.image max-700 as img %}
+          <img src="{{ img.url }}" alt="{{ page.title }}" width="{{ img.width }}" height="{{ img.height }}">
+        {% else %}
+          <div class="danse-image-placeholder">Image</div>
+        {% endif %}
+      </div>
+
+      <div class="danse-texte">
+        <h2>La danse</h2>
+        {% if page.texte %}
+          <div class="texte-riche">{{ page.texte|richtext }}</div>
+        {% else %}
+          <p>Description à compléter dans l'administration.</p>
+        {% endif %}
+
+        {% if page.url_youtube %}
+          <div class="danse-video">
+            <iframe
+              src="{{ page.get_youtube_embed }}"
+              title="Vidéo {{ page.title }}"
+              width="560" height="315"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        {% endif %}
+
+        <div class="danse-boutons">
+          <a href="/nos-cours/" class="btn">Voir les cours</a>
+          <a href="/contact/" class="btn">S'inscrire</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section-autres-danses">
+    <div class="section-inner">
+      <p class="autres-danses-label">Autres danses :</p>
+      <div class="liens-danses">
+        {% for danse in page.get_siblings.live %}
+          {% if danse.pk != page.pk %}
+            <a href="{{ danse.url }}" class="btn-danse">
+              {{ danse.title }}
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

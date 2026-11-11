@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Nos cours — Tango argentin{% endblock %}
+
+{% block content %}
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1>Nos cours</h1>
+    </div>
+  </section>
+
+  <section class="section-cours">
+    <div class="section-inner">
+      {% if cours %}
+        <ul class="grille-cours">
+          {% for c in cours %}
+            <li class="carte-cours">
+              <h2 class="cours-ville">{{ c.ville }}</h2>
+              <ul class="cours-infos">
+                <li>
+                  <span class="cours-label">Jour / horaire</span>
+                  <span class="cours-valeur">{{ c.jour_horaire }}</span>
+                </li>
+                <li>
+                  <span class="cours-label">Niveau</span>
+                  <span class="cours-valeur">{{ c.get_niveau_display }}</span>
+                </li>
+                <li>
+                  <span class="cours-label">Adresse</span>
+                  <span class="cours-valeur">{{ c.adresse }}</span>
+                </li>
+              </ul>
+              {% if c.lien_plan %}
+                <a href="{{ c.lien_plan }}" class="btn btn-plan" target="_blank" rel="noopener">
+                  Plan d'accès
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <ul class="grille-cours">
+          <li class="carte-cours">
+            <h2 class="cours-ville">Eysines</h2>
+            <ul class="cours-infos">
+              <li><span class="cours-label">Jour / horaire</span><span class="cours-valeur">À compléter</span></li>
+              <li><span class="cours-label">Niveau</span><span class="cours-valeur">À compléter</span></li>
+              <li><span class="cours-label">Adresse</span><span class="cours-valeur">À compléter</span></li>
+            </ul>
+          </li>
+          <li class="carte-cours">
+            <h2 class="cours-ville">Pompignac</h2>
+            <ul class="cours-infos">
+              <li><span class="cours-label">Jour / horaire</span><span class="cours-valeur">À compléter</span></li>
+              <li><span class="cours-label">Niveau</span><span class="cours-valeur">À compléter</span></li>
+              <li><span class="cours-label">Adresse</span><span class="cours-valeur">À compléter</span></li>
+            </ul>
+          </li>
+          <li class="carte-cours">
+            <h2 class="cours-ville">Bordeaux</h2>
+            <ul class="cours-infos">
+              <li><span class="cours-label">Jour / horaire</span><span class="cours-valeur">À compléter</span></li>
+              <li><span class="cours-label">Niveau</span><span class="cours-valeur">À compléter</span></li>
+              <li><span class="cours-label">Adresse</span><span class="cours-valeur">À compléter</span></li>
+            </ul>
+          </li>
+        </ul>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="section-tarifs">
+    <div class="section-inner">
+      <div class="bloc-tarifs">
+        <h2>Tarifs</h2>
+        {% if tarifs %}
+          <ul class="liste-tarifs">
+            {% for tarif in tarifs %}
+              <li class="ligne-tarif">
+                <span class="tarif-libelle">{{ tarif.libelle }}</span>
+                <span class="tarif-montant">{{ tarif.montant }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <ul class="liste-tarifs">
+            <li class="ligne-tarif"><span class="tarif-libelle">Adhésion annuelle</span><span class="tarif-montant">15 €</span></li>
+            <li class="ligne-tarif"><span class="tarif-libelle">Plein tarif</span><span class="tarif-montant">300 €/an</span></li>
+            <li class="ligne-tarif"><span class="tarif-libelle">Tarif réduit -25 ans</span><span class="tarif-montant">275 €/an</span></li>
+            <li class="ligne-tarif"><span class="tarif-libelle">Cours personnel</span><span class="tarif-montant">300 €/an</span></li>
+          </ul>
+        {% endif %}
+        <a href="/contact/" class="btn btn-inscrire">S'inscrire</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
