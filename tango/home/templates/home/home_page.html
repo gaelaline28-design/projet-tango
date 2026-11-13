@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}Accueil — Tango argentin{% endblock %}
+
+{% block content %}
+
+  <!-- ===================== SECTION PRÉSENTATION ===================== -->
+  <section class="section-presentation">
+    <div class="presentation-inner">
+
+      <div class="presentation-photo">
+        {% if page.photo_principale %}
+          {% image page.photo_principale fill-600x440 as img %}
+          <img src="{{ img.url }}" alt="Julia et Andres, professeurs de tango argentin" width="{{ img.width }}" height="{{ img.height }}">
+        {% else %}
+          <div class="photo-placeholder">Photo des professeurs</div>
+        {% endif %}
+      </div>
+
+      <div class="presentation-texte">
+        <h1>Le tango argentin à Bordeaux</h1>
+        {% if page.texte_presentation %}
+          <div class="texte-riche">{{ page.texte_presentation|richtext }}</div>
+        {% else %}
+          <p>Julia et Andres vous accueillent depuis plus de 25 ans dans leurs cours, leurs milongas et leurs stages, au sein de l'association El Firulete.</p>
+        {% endif %}
+        <div class="presentation-boutons">
+          <a href="/nos-cours/" class="btn">Voir les cours</a>
+          <a href="/contact/" class="btn">S'inscrire</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== SECTION LES DANSES ===================== -->
+  <section class="section-danses">
+    <div class="bloc-danses">
+      <h2>Les danses</h2>
+      <p>Tango, valse et milonga : découvrez les trois danses.</p>
+      <a href="/les-danses/" class="btn">
+        Voir les danses
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION PROCHAINES SOIRÉES ===================== -->
+  <section class="section-soirees">
+    <div class="section-inner">
+      <h2>Prochaines soirées</h2>
+
+      {% if soirees %}
+        <ul class="liste-soirees">
+          {% for soiree in soirees %}
+            <li class="carte-soiree">
+              <div class="carte-soiree-image">
+                {% if soiree.image %}
+                  {% image soiree.image fill-120x120 as img_soiree %}
+                  <img src="{{ img_soiree.url }}" alt="{{ soiree.titre }}" width="{{ img_soiree.width }}" height="{{ img_soiree.height }}">
+                {% else %}
+                  <div class="image-placeholder">Image</div>
+                {% endif %}
+              </div>
+              <div class="carte-soiree-infos">
+                <p class="soiree-titre">{{ soiree.titre }}</p>
+                <p class="soiree-meta">{{ soiree.date|date:"d/m/Y" }} · {{ soiree.lieu }}</p>
+                <p class="soiree-type">{{ soiree.get_type_label }}</p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="aucune-soiree">Aucune soirée prévue pour le moment.</p>
+      {% endif %}
+
+    </div>
+  </section>
+
+{% endblock %}

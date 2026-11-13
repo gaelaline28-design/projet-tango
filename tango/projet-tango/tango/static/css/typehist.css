@@ -1,0 +1,606 @@
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #1a1a1a;
+  background: #f5f0eb;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ============================================================
+   EN-TÊTE
+   ============================================================ */
+.site-header {
+  border-bottom: 1px solid #e0d8ce;
+  background: #f5f0eb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Logo */
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-sigle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: Georgia, serif;
+}
+
+.logo-titre {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Menu burger (mobile) */
+.menu-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.menu-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #1a1a1a;
+  border-radius: 2px;
+}
+
+/* Navigation */
+.main-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  align-items: center;
+}
+
+.main-nav a {
+  font-size: 14px;
+  color: #1a1a1a;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.main-nav a:hover,
+.main-nav a[aria-current="page"] {
+  border-bottom-color: #1a1a1a;
+}
+
+
+/* ============================================================
+   SECTION PRÉSENTATION
+   ============================================================ */
+.section-presentation {
+  padding: 40px 16px;
+  background: #f5f0eb;
+}
+
+.presentation-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+}
+
+.presentation-photo {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.presentation-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 280px;
+  background: #e8e0d8;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+  font-family: Georgia, serif;
+}
+
+.presentation-texte {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.presentation-texte h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.presentation-texte p,
+.texte-riche p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.presentation-boutons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+/* ============================================================
+   BOUTON
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 20px;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  background: #f5f0eb;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.btn svg {
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   SECTION LES DANSES
+   ============================================================ */
+.section-danses {
+  padding: 16px 16px 32px;
+  background: #f5f0eb;
+}
+
+.bloc-danses {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #ede5dc;
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+
+.bloc-danses h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.bloc-danses p {
+  color: #555;
+  margin-bottom: 16px;
+}
+
+
+/* ============================================================
+   SECTION PROCHAINES SOIRÉES
+   ============================================================ */
+.section-soirees {
+  padding: 16px 16px 48px;
+  background: #f5f0eb;
+}
+
+.section-soirees .section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-soirees h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.liste-soirees {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.carte-soiree {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid #e0d8ce;
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+}
+
+.carte-soiree-image img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.image-placeholder {
+  width: 72px;
+  height: 72px;
+  background: #e8e0d8;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 12px;
+}
+
+.soiree-titre {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.soiree-meta {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.soiree-type {
+  font-size: 13px;
+  color: #999;
+}
+
+.aucune-soiree {
+  color: #999;
+  font-size: 14px;
+}
+
+
+/* ============================================================
+   PIED DE PAGE
+   ============================================================ */
+.site-footer {
+  background: #ede5dc;
+  border-top: 1px solid #e0d8ce;
+  padding: 24px 16px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+.footer-asso {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.footer-contact p {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.footer-contact a {
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+
+.footer-contact a:hover {
+  color: #1a1a1a;
+}
+
+.footer-label {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.reseaux-liens {
+  display: flex;
+  gap: 16px;
+}
+
+.reseaux-liens a {
+  color: #555;
+  transition: color 0.2s;
+}
+
+.reseaux-liens a:hover {
+  color: #1a1a1a;
+}
+
+
+/* ============================================================
+   UTILITAIRE : CONTENEUR CENTRÉ
+   ============================================================ */
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   PAGE HISTOIRE — EN-TÊTE DE PAGE
+   ============================================================ */
+.page-hero {
+  padding: 48px 16px 32px;
+  background: #f5f0eb;
+  border-bottom: 1px solid #e0d8ce;
+}
+
+.page-hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-hero h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #1a1a1a;
+}
+
+
+/* ============================================================
+   PAGE HISTOIRE — FRISE / IMAGE PLEINE LARGEUR
+   ============================================================ */
+.section-frise {
+  padding: 32px 16px;
+  background: #f5f0eb;
+}
+
+.frise-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+.frise-placeholder {
+  width: 100%;
+  height: 220px;
+  background: #e8e0d8;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+  font-family: Georgia, serif;
+}
+
+
+/* ============================================================
+   PAGE HISTOIRE — TEXTES DEUX COLONNES
+   ============================================================ */
+.section-textes {
+  padding: 16px 16px 40px;
+  background: #f5f0eb;
+}
+
+.section-textes-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.bloc-texte h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #1a1a1a;
+}
+
+.bloc-texte p,
+.bloc-texte .texte-riche p {
+  color: #555;
+  margin-bottom: 14px;
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   PAGE HISTOIRE — LES 3 DANSES D'UNE MILONGA
+   ============================================================ */
+.section-3danses {
+  padding: 16px 16px 48px;
+  background: #f5f0eb;
+}
+
+.bloc-3danses {
+  background: #ede5dc;
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+
+.bloc-3danses h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+
+.liens-danses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-danse {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 20px;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  background: #f5f0eb;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-danse:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.btn-danse svg {
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   RESPONSIVE MOBILE
+   ============================================================ */
+@media (max-width: 700px) {
+
+  .menu-burger {
+    display: flex;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 69px;
+    left: 0;
+    right: 0;
+    background: #f5f0eb;
+    border-top: 1px solid #e0d8ce;
+    padding: 16px;
+    z-index: 99;
+  }
+
+  .main-nav.open {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0d8ce;
+    font-size: 16px;
+  }
+
+  .presentation-texte h1 {
+    font-size: 22px;
+  }
+
+  .bloc-danses {
+    padding: 20px 16px;
+  }
+
+  /* Histoire mobile */
+  .page-hero h1 {
+    font-size: 22px;
+  }
+
+  .section-textes-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .bloc-3danses {
+    padding: 20px 16px;
+  }
+
+  .liens-danses {
+    flex-direction: column;
+  }
+
+  .btn-danse {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

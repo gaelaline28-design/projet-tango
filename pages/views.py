@@ -15,8 +15,6 @@ from django.conf import settings
 # Si quelqu'un tape l'URL directement dans le navigateur → erreur 405
 from django.views.decorators.http import require_POST
 
-
-
 @require_POST
 def contact_envoyer(request):
 
@@ -49,7 +47,7 @@ def contact_envoyer(request):
 
     # S'il y a des erreurs → retour au formulaire avec un signal d'erreur
     if erreurs:
-        return redirect('/contact/?erreur=1')
+        return redirect('/contact_page/?erreur=1')
 
     # --- Construction du texte de l'e-mail ---
     motif_texte = "S'inscrire" if motif == 'inscription' else "Poser une question"

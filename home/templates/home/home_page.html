@@ -27,8 +27,8 @@
         {% endif %}
 
         <div class="presentation-boutons">
-          <a href="/nos-cours/" class="btn">Voir les cours</a>
-          <a href="/contact/" class="btn">S'inscrire</a>
+          <a href="{% slugurl 'nos_cours_page' %}" class="btn btn-cours">Voir les cours</a>
+          <a href="{% slugurl 'contact_page' %}" class="btn btn-inscrire">S'inscrire</a>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
     <div class="bloc-danses">
       <h2>Les danses</h2>
       <p>Tango, valse et milonga : découvrez les trois danses.</p>
-      <a href="/les-danses/" class="btn">
+        <a href="{% slugurl 'les_danses_page' %}" class="btn">
         Voir les danses
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>

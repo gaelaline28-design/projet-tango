@@ -17,6 +17,8 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = PROJECT_DIR.parent
 
 
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
@@ -116,13 +118,32 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = 'fr-fr'
 
-TIME_ZONE = "UTC"
+LANGUAGES = [
+    ('fr-fr', 'Français'),
+    ('en-us', 'English'),
+]
+
+
+# TIME_ZONE = "UTC"
 
 USE_I18N = True
 
+USE_L10N = True   # Active la localisation des formats
+
 USE_TZ = True
+
+DATE_INPUT_FORMATS = [
+    '%d/%m/%Y',   # 14/11/2026  ← format principal
+    '%d-%m-%Y',   # 14-11-2026
+    '%Y-%m-%d',   # 2026-11-14  ← gardé en dernier pour compatibilité
+]
+
+# quand quelqu’un remplit le formulaire, le site doit envoyer un mail à l’association.
+CONTACT_EMAIL = "elchafita@hotmail.com"
+DEFAULT_FROM_EMAIL = "elchafita@hotmail.com"
+
 
 
 # Static files (CSS, JavaScript, Images)

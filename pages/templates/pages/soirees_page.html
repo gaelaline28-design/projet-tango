@@ -37,7 +37,7 @@
                 {% if soiree.description %}
                   <div class="fiche-desc texte-riche">{{ soiree.description|richtext }}</div>
                 {% endif %}
-                <a href="/contact/" class="btn btn-contacter">Contacter</a>
+                <a href="{% slugurl 'contact_page' %}" class="btn btn-contacter">Contacter</a>
               </div>
             </li>
           {% endfor %}

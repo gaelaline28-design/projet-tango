@@ -2,6 +2,7 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from pages.models import PageProtegee
 
 
 
@@ -9,7 +10,7 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 # Page : Accueil
 # ---------------------------------------------------------------------------
 
-class HomePage(Page):
+class HomePage(PageProtegee):
     """Page d'accueil du site."""
 
     # Photo principale (photo des professeurs) :

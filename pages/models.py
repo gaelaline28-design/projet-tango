@@ -52,6 +52,10 @@ class Soiree(models.Model):
         FieldPanel('description'),
         FieldPanel('image'),
     ]
+
+
+
+
  
     class Meta:
         verbose_name        = 'Soirée / Événement'
@@ -137,13 +141,19 @@ class Tarif(models.Model):
  
     def __str__(self):
         return f"{self.libelle} : {self.montant}"
- 
+
+
+# réduire les droits utilisateurs
+class PageProtegee(Page) :
+    promote_panels = [FieldPanel("slug", permission="auth.change_user")]
+    class Meta :
+        abstract = True
  
 # ============================================================
 #  PAGES — Chaque classe = un type de page dans Wagtail
 # ============================================================
  
-class HistoriquePage(Page):
+class HistoriquePage(PageProtegee):
     """
     Page : Histoire du tango et de la milonga
     URL prévue : /histoire/
@@ -172,7 +182,7 @@ class HistoriquePage(Page):
         verbose_name = 'Page Histoire'
  
  
-class LesDansesPage(Page):
+class LesDansesPage(PageProtegee):
     """
     Page : Les danses (liste des 3 danses)
     URL prévue : /les-danses/
@@ -199,7 +209,7 @@ class LesDansesPage(Page):
         verbose_name = 'Page Les danses'
  
  
-class DansePage(Page):
+class DansePage(PageProtegee):
     """
     Page : Détail d'une danse (Tango, Valse ou Milonga)
     URL prévue : /les-danses/tango/  (ou valse, milonga)
@@ -251,7 +261,7 @@ class DansePage(Page):
         verbose_name_plural = 'Pages Danses'
  
  
-class ProfesseursPage(Page):
+class ProfesseursPage(PageProtegee):
     """
     Page : Les professeurs (Julia, Andres + l'association)
     URL prévue : /professeurs/
@@ -311,7 +321,7 @@ class ProfesseursPage(Page):
         verbose_name = 'Page Professeurs'
  
  
-class NosCoursPage(Page):
+class NosCoursPage(PageProtegee):
     """
     Page : Nos cours (lieux + tarifs)
     URL prévue : /nos-cours/
@@ -333,7 +343,7 @@ class NosCoursPage(Page):
         verbose_name = 'Page Nos cours'
  
  
-class SoireesPage(Page):
+class SoireesPage(PageProtegee):
     """
     Page : Soirées et événements (liste complète)
     URL prévue : /soirees/
@@ -355,7 +365,7 @@ class SoireesPage(Page):
         verbose_name = 'Page Soirées'
  
  
-class ContactPage(Page):
+class ContactPage(PageProtegee):
     """
     Page : Contact et inscription (formulaire)
     URL prévue : /contact/

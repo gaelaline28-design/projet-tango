@@ -1,0 +1,83 @@
+{% comment %} {% load wagtailcore_tags wagtailimages_tags %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Tango argentin{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-logo">
+        <span class="logo-sigle">JA</span>
+        <span class="logo-titre">Tango argentin</span>
+      </div>
+      <button class="menu-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/histoire/">Histoire</a></li>
+          <li><a href="/les-danses/">Les danses</a></li>
+          <li><a href="/professeurs/">Professeurs</a></li>
+          <li><a href="/nos-cours/">Nos cours</a></li>
+          <li><a href="/contact/">Contact et inscription</a></li>
+          <li><a href="/soirees/">Soirées</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-contact">
+        <p class="footer-asso">El Firulete</p>
+        <p>
+          <a href="tel:0000000000">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 4.2 2 2 0 0 1 5.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L9 9.9a16 16 0 0 0 6.1 6.1l1.5-1.3a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7A2 2 0 0 1 22 16.9z"/></svg>
+            00 00 00 00 00
+          </a>
+        </p>
+        <p>
+          <a href="mailto:contact@exemple.fr">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+            contact@exemple.fr
+          </a>
+        </p>
+      </div>
+      <div class="footer-reseaux">
+        <p class="footer-label">Nous suivre</p>
+        <div class="reseaux-liens">
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.6a2.8 2.8 0 0 0-2-2C18.9 4.2 12 4.2 12 4.2s-6.9 0-8.5.4a2.8 2.8 0 0 0-2 2C1.2 8.2 1.2 12 1.2 12s0 3.8.4 5.4a2.8 2.8 0 0 0 2 2c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a2.8 2.8 0 0 0 2-2c.4-1.6.4-5.4.4-5.4s0-3.8-.5-5.4zM9.8 15.5V8.5l5.7 3.5-5.7 3.5z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.querySelector('.menu-burger');
+    const nav = document.querySelector('.main-nav');
+    burger.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+    });
+  </script>
+
+</body>
+</html> {% endcomment %}
