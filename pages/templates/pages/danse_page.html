@@ -16,7 +16,7 @@
 
       <div class="danse-image">
         {% if page.image %}
-          {% image page.image max-700 as img %}
+          {% image page.image max-700x700 as img %}
           <img src="{{ img.url }}" alt="{{ page.title }}" width="{{ img.width }}" height="{{ img.height }}">
         {% else %}
           <div class="danse-image-placeholder">Image</div>

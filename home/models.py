@@ -20,7 +20,7 @@ class HomePage(PageProtegee):
         blank=True,                 # peut être vide dans le formulaire admin
         on_delete=models.SET_NULL,  # si l'image est supprimée → met NULL
         related_name='+',           
-        verbose_name='Photo des professeurs',
+        verbose_name='Photo des professeurs Taille idéale : 880 × 640 px (minimum 660 × 480)',
     )
     
     # Texte de présentation
@@ -56,3 +56,5 @@ class HomePage(PageProtegee):
  
     class Meta:
         verbose_name = "Page d'accueil"
+
+

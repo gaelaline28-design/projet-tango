@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Mentions légales et confidentialité — Tango argentin{% endblock %}
+
+{% block content %}
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1>{{ page.title }}</h1>
+    </div>
+  </section>
+
+  <section class="section-textes">
+    <div class="section-inner">
+      <div class="texte-riche">{{ page.contenu|richtext }}</div>
+    </div>
+  </section>
+
+{% endblock %}

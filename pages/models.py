@@ -40,7 +40,7 @@ class Soiree(models.Model):
         null=True, blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        verbose_name='Image',
+        verbose_name='Image taille: 880 × 640 px',
     )
  
     # panels = les champs affichés dans l'admin (snippets utilisent "panels")
@@ -145,7 +145,13 @@ class Tarif(models.Model):
 
 # réduire les droits utilisateurs
 class PageProtegee(Page) :
-    promote_panels = [FieldPanel("slug", permission="auth.change_user")]
+    promote_panels = [
+    MultiFieldPanel([
+        FieldPanel("slug", permission="auth.change_user"),
+        FieldPanel("seo_title"),
+        FieldPanel("search_description"),
+    ], heading="Référencement"),
+]
     class Meta :
         abstract = True
  
@@ -223,7 +229,7 @@ class DansePage(PageProtegee):
         null=True, blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        verbose_name='Image de la danse',
+        verbose_name='Image de la danse Taille idéale : 1200 × 800 px (minimum 700 × 450)',
     )
     texte      = RichTextField(blank=True, verbose_name='Texte de présentation')
     url_youtube = models.URLField(
@@ -385,4 +391,18 @@ class ContactPage(PageProtegee):
  
     class Meta:
         verbose_name = 'Page Contact et inscription'
- 
+
+class MentionsLegalesPage(PageProtegee):
+    """
+    Page : Mentions légales et politique de confidentialité
+    Template : pages/templates/pages/mentions_legales_page.html
+    """
+
+    contenu = RichTextField(blank=True, verbose_name='Contenu de la page')
+
+    content_panels = Page.content_panels + [
+        FieldPanel('contenu'),
+    ]
+
+    class Meta:
+        verbose_name = 'Page Mentions légales'
