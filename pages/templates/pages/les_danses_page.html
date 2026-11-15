@@ -20,7 +20,7 @@
             <li class="carte-danse">
               <div class="carte-danse-image">
                 {% if danse.image %}
-                  {% image danse.image max-600 as img_danse %}
+                  {% image danse.image max-600x400 as img_danse %}
                   <img src="{{ img_danse.url }}" alt="{{ danse.title }}" width="{{ img_danse.width }}" height="{{ img_danse.height }}">
                 {% else %}
                   <div class="carte-danse-placeholder">Image</div>
